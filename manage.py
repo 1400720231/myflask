@@ -2,6 +2,9 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from zlktqa import app
 from exts import db
+# User 模型
+from models import User
+db.init_app(app)
 
 manager = Manager(app)
 # 使用Migrate绑定app和db
@@ -26,5 +29,6 @@ migrate则是MigrateCommand中产生的，所以是必填的。
 
 ps：
     如果要顺利完成models的迁移，还需要把model导入到这个py文件中
+    第一次先执行：python manage.py db  init 
 
 """

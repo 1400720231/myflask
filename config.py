@@ -4,7 +4,7 @@ DEBUG = True
 # dialect+driver://username:password@host:port/database
 # 数据库设置
 DIALECT = "mysql"
-DRIVER = "mysqldb"
+DRIVER = "mysqlclient"
 USERNAME ="panda"
 PASSWORD = "250onion"
 HOST = "localhost"
@@ -20,4 +20,4 @@ SQLALCHEMY_TRACK_MODIFICATIONS  = False
 
 
 # flask的session加密的密钥串
-SECRECT_KEY = os.urandom(24)
+SECRET_KEY = os.urandom(24)
