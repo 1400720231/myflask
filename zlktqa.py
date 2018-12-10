@@ -5,9 +5,12 @@ import config
 app = Flask(__name__)
 # 加载配置文件内容
 app.config.from_object(config)
+
+
 @app.route("/")
 def hello_world():
     return render_template("index.html")
+
 
 @app.route("/login/", methods=["GET","POST"])
 def login():

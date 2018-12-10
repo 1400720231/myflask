@@ -4,7 +4,7 @@ DEBUG = True
 # dialect+driver://username:password@host:port/database
 # 数据库设置
 DIALECT = "mysql"
-DRIVER = "mysqlclient"
+DRIVER = "mysqldb"
 USERNAME ="panda"
 PASSWORD = "250onion"
 HOST = "localhost"

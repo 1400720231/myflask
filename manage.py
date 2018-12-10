@@ -2,9 +2,8 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from zlktqa import app
 from exts import db
-# User 模型
+# User 模型 一定要导入才能创建表
 from models import User
-db.init_app(app)
 
 manager = Manager(app)
 # 使用Migrate绑定app和db
@@ -13,7 +12,7 @@ migrate = Migrate(app, db)
 manager.add_command("db", MigrateCommand)
 
 
-if __name__ == "__mian__":
+if __name__ == "__main__":
     manager.run()
 
 
@@ -30,5 +29,7 @@ migrate则是MigrateCommand中产生的，所以是必填的。
 ps：
     如果要顺利完成models的迁移，还需要把model导入到这个py文件中
     第一次先执行：python manage.py db  init 
+    再执行 python manage.py migrate
+    	  python manage.py upgrade
 
 """
