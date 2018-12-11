@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for,session
 from exts import db
-from models import User
+from models import User,Question
 from decorators import login_required
 
 # 引入配置文件
@@ -19,7 +19,7 @@ db.init_app(app)
 def index():
     return render_template("index.html")
 
-
+# 如果需要POST请求就需要声明methods=["GET","POST"], 默认支持GET
 @app.route("/login/", methods=["GET","POST"])
 def login():
 	if request.method == "GET":
@@ -70,8 +70,15 @@ def question():
 	if request.method == "GET":
 		return render_template("question.html")
 	else:
-		pass
-
+		title = request.form.get('title')
+		content = request.form.get('content')
+		question = Question(title=title, content=content)
+		user_id = session.get('user_id')
+		user = User.query.filter(User.id == user_id).first()
+		question.author = user
+		db.session.add(question)
+		db.session.commit()
+		return redirect(url_for("index"))
 
 """
 钩子函数，插入上下文，实现了在所有的html中都可以使用变量user,来达到当用户登录就显示用户名，不登录就显示注册的效果，

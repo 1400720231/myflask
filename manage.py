@@ -3,7 +3,7 @@ from flask_migrate import Migrate, MigrateCommand
 from zlktqa import app
 from exts import db
 # User 模型 一定要导入才能创建表
-from models import User
+from models import User,Question
 
 manager = Manager(app)
 # 使用Migrate绑定app和db
